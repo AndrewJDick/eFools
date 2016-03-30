@@ -7,7 +7,9 @@ var gulp          = require('gulp'),
     replace       = require('gulp-replace'),
     entityconvert = require('gulp-entity-convert'),
     htmlmin       = require('gulp-htmlmin'),
-    zip           = require('gulp-zip');
+    zip           = require('gulp-zip'),
+    htmllint      = require('gulp-htmllint'),
+    gutil         = require('gulp-util');
 
 
 // Global Variables
@@ -16,7 +18,7 @@ var emailSubject  = 'Cohaesus Easter Email';
 
 // Shortcut paths to locate html and img files
 var paths = {
-  html: ['./src/*.html'],
+  html: ['./*.html'],
   img: ['./src/img/*']
 };
 
@@ -24,7 +26,7 @@ var paths = {
 // Litmus Task
 // Running the task sources all html files in the project folder on the approval server and sends a test to the VML Litmus account (available here: https://litmus.com/checklist).
 gulp.task('litmusTest', function() {
-    gulp.src(['./dist/index.min.html'])
+    gulp.src(['./index.html'])
     .pipe(emailBuilder( {
 
         litmus : {
@@ -40,10 +42,27 @@ gulp.task('litmusTest', function() {
 });
 
 
+// Linting Task
+gulp.task('lint', function() {
+    return gulp.src('./index.html')
+        .pipe(htmllint({}, htmllintReporter));
+});
+ 
+function htmllintReporter(filepath, issues) {
+    if (issues.length > 0) {
+        issues.forEach(function (issue) {
+            gutil.log(gutil.colors.cyan('[gulp-htmllint] ') + gutil.colors.white(filepath + ' [' + issue.line + ',' + issue.column + ']: ') + gutil.colors.red('(' + issue.code + ') ' + issue.msg));
+        });
+ 
+        process.exitCode = 1;
+    }
+}
+
+
 // HTML Dist code
 // Removes whitespace and comments from the code, minifies it, and pipes it to dist.
 gulp.task('distHTML', function() {
-    return gulp.src('src/index.html')
+    return gulp.src('./index.html')
     .pipe(htmlmin( {
         collapseWhitespace: true,
         removeComments: true,
