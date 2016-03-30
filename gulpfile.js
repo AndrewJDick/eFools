@@ -29,9 +29,9 @@ gulp.task('litmusTest', function() {
 
         litmus : {
             subject:    emailSubject,
-            username:   'james.hunt@cohaesus.co.uk',
-            password:   'belkin496',
-            url:        'https://cohaesus.litmus.com',
+            username:   '',
+            password:   '',
+            url:        '',
 
             // Email clients. <application_code> found at http://yoursite.litmus.com/emails/clients.xml
             applications : ['android4', 'androidgmailapp', 'gmailnew', 'ffgmailnew', 'chromegmailnew', 'ipadmini', 'ipad' , 'iphone5s', 'iphone5sios8', 'iphone6', 'iphone6plus', 'iphone6s', 'iphone6splus', 'ol2000', 'ol2002', 'ol2003', 'ol2007', 'ol2010', 'ol2011', 'ol2013', 'ol2013dpi120', 'ol2015', 'outlookcom', 'ffoutlookcom', 'chromeoutlookcom', 'yahoo', 'ffyahoo', 'chromeyahoo']
