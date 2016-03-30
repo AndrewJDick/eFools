@@ -1,0 +1,27 @@
+{
+  "name": "easter_email",
+  "version": "1.0.0",
+  "description": "Spoof email",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-email-builder": "^1.0.4",
+    "gulp-entity-convert": "0.0.2",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-wait": "0.0.2",
+    "gulp-zip": "^3.2.0"
+  },
+  "devDependencies": {
+    "gulp-htmlmin": "^1.3.0",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-remove-html-comments": "^1.0.1",
+    "gulp-zip": "^3.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andrew James Dick",
+  "license": "ISC"
+}
